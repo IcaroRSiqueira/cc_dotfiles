@@ -42,6 +42,11 @@ install_tmux() {
 }
 
 install_gnome_terminal_colors() {
+  if grep -qi microsoft /proc/version 2>/dev/null; then
+    echo "WSL detected — skipping gnome-terminal colors installation"
+    return
+  fi
+
   if [[ -z "${TERMINAL}" ]]; then
     TERMINAL=gnome-terminal bash -c "$(curl -sSLo- https://raw.githubusercontent.com/Mayccoll/Gogh/master/gogh.sh)"
   else

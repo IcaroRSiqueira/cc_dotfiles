@@ -40,7 +40,7 @@ See [tests/README.md](tests/README.md) for detailed setup instructions.
 - Vim leader key is `<Space>`
 - Tmux prefix is `C-a` (not the default `C-b`)
 - Zsh uses vi mode with `jj` bound to escape
-- Default colorscheme is gruvbox (dark background)
+- Default colorscheme is gruvbox for Vim, while the tmux theme defaults to the warm VS Code-inspired palette managed by `bin/tmux-theme`
 - Vim plugin manager is [vim-plug](https://github.com/junegunn/vim-plug) (`~/.vim/plugins.vim`)
 - Vim settings are auto-loaded from `vim/settings/*.vim`
 - Zsh functions are auto-loaded from `zsh/functions/*`

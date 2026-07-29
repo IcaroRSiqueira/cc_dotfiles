@@ -43,3 +43,6 @@ Session.vim
 # SASS
 # ----------------------------------------------------------------------------------------------
 .sass-cache
+
+# Claude Code local settings
+**/.claude/settings.local.json

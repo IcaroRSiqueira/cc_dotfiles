@@ -26,10 +26,14 @@ On Ubuntu, if not already installed:
 sudo apt-get install -y curl
 ```
 
+## About this fork
+
+This is a personal fork of Campus Code dotfiles with a warmer tmux theme by default, tmux status at the top, a `bin/tmux-theme` helper, `>`/`x` prompt markers, and git alias support for recent tags.
+
 ## Install
 
 ```bash
-bash -c "$(curl -fSs https://raw.githubusercontent.com/campuscode/cc_dotfiles/main/install.sh)"
+bash -c "$(curl -fSs https://raw.githubusercontent.com/IcaroRSiqueira/cc_dotfiles/main/install.sh)"
 ```
 
 You will be prompted for your password to change the default shell to zsh.
@@ -80,7 +84,7 @@ Every config file sources a `.local` counterpart if present. Place your personal
 - **Vim leader**: `<Space>`
 - **Tmux prefix**: `C-a`
 - **Zsh vi mode**: `jj` to escape
-- **Colorscheme**: gruvbox (dark)
+- **Colorscheme**: gruvbox for Vim, warm tmux theme by default
 
 ## Docs
 

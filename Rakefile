@@ -21,6 +21,7 @@ task :install do
   install_vim_plugins
   install_zsh_syntax_highlighting
   install_tmux_battery_plugin
+  install_tmux_theme
   tmux_copy_mode
   add_vimrc_local
   change_shell
@@ -69,6 +70,15 @@ def install_tmux_battery_plugin
     run_command %{ git -C #{path} pull }
   else
     run_command %{ git clone --depth=1 https://github.com/tmux-plugins/tmux-battery #{path} }
+  end
+end
+
+def install_tmux_theme
+  themes_dir = "#{ENV["HOME"]}/.tmux/themes"
+  active = "#{themes_dir}/active.conf"
+  run_command %{ mkdir -p #{themes_dir} }
+  unless File.exist?(active) || File.symlink?(active)
+    run_command %{ ln -nfs "#{cc_dotfiles_folder}/tmux/themes/warm.conf" "#{active}" }
   end
 end
 

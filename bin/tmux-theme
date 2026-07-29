@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+THEME="${1:-warm}"
+THEMES_DIR="$HOME/.tmux/themes"
+THEME_FILE="$HOME/.cc_dotfiles/tmux/themes/${THEME}.conf"
+
+if [ ! -f "$THEME_FILE" ]; then
+  echo "Tema não encontrado: $THEME_FILE"
+  echo "Temas disponíveis: $(ls "$HOME/.cc_dotfiles/tmux/themes"/*.conf 2>/dev/null | xargs -I{} basename {} .conf | tr '\n' ' ')"
+  exit 1
+fi
+
+mkdir -p "$THEMES_DIR"
+ln -sf "$THEME_FILE" "$THEMES_DIR/active.conf"
+
+if [ -n "$TMUX" ]; then
+  tmux source-file "$HOME/.tmux.conf" && echo "Tema '${THEME}' aplicado."
+else
+  echo "Tema '${THEME}' definido. Execute: tmux source-file ~/.tmux.conf"
+fi
