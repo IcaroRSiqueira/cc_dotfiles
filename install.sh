@@ -1,6 +1,17 @@
 #!/bin/bash
 set -eu
 
+DOTFILES_REPOSITORY="${DOTFILES_REPOSITORY:-IcaroRSiqueira/cc_dotfiles}"
+DOTFILES_REPO_URL="${DOTFILES_REPO_URL:-}"
+
+if [ -n "$DOTFILES_REPO_URL" ]; then
+  dotfiles_repo_url="$DOTFILES_REPO_URL"
+elif [[ "$DOTFILES_REPOSITORY" == https://* || "$DOTFILES_REPOSITORY" == git@* ]]; then
+  dotfiles_repo_url="$DOTFILES_REPOSITORY"
+else
+  dotfiles_repo_url="https://github.com/${DOTFILES_REPOSITORY}.git"
+fi
+
 if [ -d "$HOME/.cc_dotfiles" ]; then
   echo "Using existing dotfiles directory at $HOME/.cc_dotfiles"
 else
@@ -20,7 +31,7 @@ else
           ;;
       esac
     fi
-    git clone --depth=10 https://github.com/campuscode/cc_dotfiles.git "$HOME/.cc_dotfiles"
+    git clone --depth=10 "$dotfiles_repo_url" "$HOME/.cc_dotfiles"
   else
     echo "Installing from local source"
     rsync -a --no-perms --exclude='.vagrant' --exclude='tags' --exclude='vim/autoload' --exclude='vim/bundle' --exclude='vim/backups' . "$HOME/.cc_dotfiles"
