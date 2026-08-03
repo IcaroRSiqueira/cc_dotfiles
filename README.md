@@ -44,6 +44,15 @@ On Ubuntu, if the terminal still opens in Bash after installation, set the termi
 exec zsh
 ```
 
+After installation, you can also apply the warm Ubuntu terminal palette with the helper script:
+
+```bash
+cd ~/Workspace/cc_dotfiles
+./bin/apply-ubuntu-terminal-theme
+```
+
+If the tmux separators look wrong, make sure your terminal font supports Powerline/Nerd Font glyphs (for example, JetBrains Mono Nerd Font).
+
 For local development installs (from a cloned repo):
 
 ```bash

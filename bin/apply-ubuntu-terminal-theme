@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+PROFILE_PATH="${PROFILE_PATH:-}"
+
+if ! command -v gsettings >/dev/null 2>&1; then
+  echo "gsettings not available; cannot apply Ubuntu terminal theme automatically."
+  exit 1
+fi
+
+if [ -z "$PROFILE_PATH" ]; then
+  PROFILE_PATH="$(gsettings get org.gnome.Terminal.ProfilesList default | tr -d "'" )"
+fi
+
+if [ -z "$PROFILE_PATH" ]; then
+  echo "No GNOME Terminal profile found."
+  exit 1
+fi
+
+PROFILE_KEY="org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:${PROFILE_PATH}/"
+
+# Warm palette matching the tmux theme
+FOREGROUND="#2d2d2d"
+BACKGROUND="#f2f0e3"
+PALETTE="['#2d2d2d', '#b11e14', '#4ab118', '#b25e00', '#0f4ac6', '#665993', '#70a598', '#5c5952', '#85827a', '#ea3323', '#4ab118', '#964b00', '#1997c6', '#9b5953', '#70a598', '#2d2d2d']"
+
+gsettings set "$PROFILE_KEY" foreground-color "$FOREGROUND"
+gsettings set "$PROFILE_KEY" background-color "$BACKGROUND"
+gsettings set "$PROFILE_KEY" palette "$PALETTE"
+gsettings set "$PROFILE_KEY" use-theme-colors false
+
+echo "Ubuntu terminal theme applied."
