@@ -2,32 +2,31 @@
 set -eu
 
 if [ -d "$HOME/.cc_dotfiles" ]; then
-  echo "You already have Campus Code Dotfiles installed."
-  exit 0
-fi
-
-echo "Installing Campus Code Dotfiles"
-echo "We'll install:"
-echo "  - zsh, tmux, vim, git, silver searcher"
-echo "  - mise with Ruby and Node.js"
-echo "  - dotfiles configuration (symlinks, plugins, fonts)"
-
-if [ -z "${LOCAL_INSTALL:-}" ]; then
-  echo "Installing from remote source"
-  if ! command -v git > /dev/null 2>&1; then
-    case "$(uname -s)" in
-      Linux)
-        sudo apt-get update
-        sudo apt-get install -y git
-        ;;
-    esac
-  fi
-  git clone --depth=10 https://github.com/campuscode/cc_dotfiles.git "$HOME/.cc_dotfiles"
+  echo "Using existing dotfiles directory at $HOME/.cc_dotfiles"
 else
-  echo "Installing from local source"
-  rsync -a --no-perms --exclude='.vagrant' --exclude='tags' --exclude='vim/autoload' --exclude='vim/bundle' --exclude='vim/backups' . "$HOME/.cc_dotfiles"
-  curl -fLo "$HOME/.cc_dotfiles/vim/autoload/plug.vim" --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  echo "Installing Campus Code Dotfiles"
+  echo "We'll install:"
+  echo "  - zsh, tmux, vim, git, silver searcher"
+  echo "  - mise with Ruby and Node.js"
+  echo "  - dotfiles configuration (symlinks, plugins, fonts)"
+
+  if [ -z "${LOCAL_INSTALL:-}" ]; then
+    echo "Installing from remote source"
+    if ! command -v git > /dev/null 2>&1; then
+      case "$(uname -s)" in
+        Linux)
+          sudo apt-get update
+          sudo apt-get install -y git
+          ;;
+      esac
+    fi
+    git clone --depth=10 https://github.com/campuscode/cc_dotfiles.git "$HOME/.cc_dotfiles"
+  else
+    echo "Installing from local source"
+    rsync -a --no-perms --exclude='.vagrant' --exclude='tags' --exclude='vim/autoload' --exclude='vim/bundle' --exclude='vim/backups' . "$HOME/.cc_dotfiles"
+    curl -fLo "$HOME/.cc_dotfiles/vim/autoload/plug.vim" --create-dirs \
+      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  fi
 fi
 
 case "$(uname -s)" in
@@ -51,6 +50,9 @@ mise settings ruby.compile=false
 mise use --global ruby
 mise use --global node
 
+# Ensure the Ruby toolchain used for the install is isolated from older RVM-managed gems.
+~/.local/bin/mise exec -- gem install --no-document ostruct rake
+
 cd "$HOME/.cc_dotfiles"
-rake install
+~/.local/bin/mise exec -- rake install
 
