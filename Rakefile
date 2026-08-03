@@ -20,7 +20,6 @@ task :install do
   install_fonts
   install_vim_plugins
   install_zsh_syntax_highlighting
-  install_tmux_battery_plugin
   install_tmux_theme
   tmux_copy_mode
   add_vimrc_local
@@ -60,16 +59,6 @@ def add_vimrc_local
   target = "#{ENV["HOME"]}/.vimrc.local"
   unless File.exist?(target)
     run_command %{ cp #{cc_dotfiles_folder}/templates/vimrc.local.tmp #{target} }
-  end
-end
-
-def install_tmux_battery_plugin
-  folder = '.tmux-battery'
-  path = "#{ENV["HOME"]}/#{folder}"
-  if File.exist?(path)
-    run_command %{ git -C #{path} pull }
-  else
-    run_command %{ git clone --depth=1 https://github.com/tmux-plugins/tmux-battery #{path} }
   end
 end
 
