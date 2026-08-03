@@ -38,6 +38,12 @@ bash -c "$(curl -fSs https://raw.githubusercontent.com/IcaroRSiqueira/cc_dotfile
 
 You will be prompted for your password to change the default shell to zsh.
 
+On Ubuntu, if the terminal still opens in Bash after installation, set the terminal profile to run `/usr/bin/zsh` explicitly, or restart the session with:
+
+```bash
+exec zsh
+```
+
 For local development installs (from a cloned repo):
 
 ```bash
@@ -92,6 +98,25 @@ Every config file sources a `.local` counterpart if present. Place your personal
 - [Tmux Key Mapping](Tmux.md)
 - [Mise](Mise.md)
 - [Testing](tests/README.md)
+
+## Terminal colors on Ubuntu
+
+The tmux theme is applied by the dotfiles, but the terminal palette itself is not automatically changed by the installer on Ubuntu. If you want the same warm colors in the Ubuntu terminal, set the profile colors manually to a scheme such as:
+
+```text
+background: #f2f0e3
+foreground: #2d2d2d
+cursor:     #b11e14
+red:        #b11e14
+green:      #4ab118
+yellow:     #b25e00
+blue:       #0f4ac6
+magenta:    #665993
+cyan:       #70a598
+white:      #5c5952
+```
+
+The exact place to change it depends on your terminal app, but the values above are the same palette used by the tmux warm theme.
 
 ## Options
 
