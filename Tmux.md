@@ -71,7 +71,7 @@ Enter copy mode with `C-a C-[`. Uses vi keybindings.
 The status bar shows:
 - Current session name and user (left)
 - Window list (center)
-- Hostname and date/time (right)
+- Load average plus date/time (right)
 
 The default theme is the warm VS Code-inspired palette, with the status bar placed at the top. You can switch themes with `bin/tmux-theme`.
 
