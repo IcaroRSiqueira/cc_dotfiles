@@ -16,7 +16,7 @@ bash -c "$(curl -fSs https://raw.githubusercontent.com/campuscode/cc_dotfiles/ma
 LOCAL_INSTALL=1 bash install.sh
 ```
 
-The `install.sh` installs system dependencies, sets up mise (Ruby/Node.js), then copies the repo to `~/.cc_dotfiles` and runs `rake install`. The Rake task symlinks config files into `~/` (prefixed with `.`), installs fonts, vim-plug plugins, zsh-syntax-highlighting, tmux-battery plugin, and changes the default shell to zsh.
+The `install.sh` installs system dependencies, sets up mise (Ruby/Node.js), then copies the repo to `~/.cc_dotfiles` and runs `rake install`. The Rake task symlinks config files into `~/` (prefixed with `.`), installs fonts, vim-plug plugins, zsh-syntax-highlighting, and changes the default shell to zsh.
 
 ## Testing
 

@@ -11,7 +11,7 @@ Inspired by [Skwp Dotfiles](https://github.com/skwp/dotfiles) and [ThoughtBot Do
 
 - **Zsh** with vi mode, custom theme (peepcode), syntax highlighting, and extensive aliases
 - **Vim** with vim-plug, gruvbox colorscheme, ALE linting, NERDTree, CtrlP, and tmux integration
-- **Tmux** with `C-a` prefix, vim-aware pane navigation, battery status, and vi copy mode
+- **Tmux** with `C-a` prefix, vim-aware pane navigation, a custom status bar, and vi copy mode
 - **Git** with aliases, patience diff, vimdiff merge tool, and rerere enabled
 - **mise** for Ruby and Node.js version management
 - **Docker** and Docker Compose via [OrbStack](https://orbstack.dev) (macOS) or Docker CE (Linux, optional)
