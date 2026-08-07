@@ -55,6 +55,6 @@ ${smiley}  %{$reset_color%}'
 mise_ruby() { command -v mise > /dev/null && mise current ruby 2>/dev/null | sed 's/^/ruby-/'; }
 mise_node() { command -v mise > /dev/null && mise current node 2>/dev/null | sed 's/^/node-/'; }
 
-RPROMPT='%{$fg[white]%} $(mise_ruby) $(mise_node)$(git_prompt)%{$reset_color%}'
+RPROMPT=''
 
 # vi: set ft=zsh :
